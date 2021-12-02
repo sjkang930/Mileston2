@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Armaan's DevCard</title>
+    <title><%= user.fname %>'s DevCard</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/luxonauta/luxa@1.1/dist/expanded/luxa.css"
@@ -22,14 +22,13 @@
                   <div class="lx-row">
                     <div class="has-dflex-center bs-md pic">
                       <img
-                        src="https://github.com/luxonauta.png"
-                        alt="Armaan"
+                        src="<%= user.githubUrl %>"
+                        alt="github"
                       />
                     </div>
                     <div class="infos">
                       <span
-                        ><i class="fas fa-user-circle"></i>&nbsp;&nbsp;Armaan
-                        Dhanji</span
+                        ><i class="fas fa-user-circle"></i>&nbsp;&nbsp;<%= user.fname %></span
                       ><span
                         ><i class="fas fa-briefcase"></i>&nbsp;&nbsp;Full Stack
                         Developer</span
@@ -48,11 +47,11 @@
                 </div>
                 <div class="lx-card">
                   <div class="lx-row">
-                    <h1 class="title">Connect with Armaan</h1>
+                    <h1 class="title">Connect with <%= user.fname %></h1>
                     <div class="mini-cards">
                       <a
                         class="has-dflex-center bs-md"
-                        href="https://github.com/adhanji8"
+                        href="<%= user.githubURL %>"
                         target="_blank"
                         rel="noopener noreferrer"
                         ><i class="fab fa-github-alt"></i></a
@@ -72,7 +71,7 @@
               <div class="lx-row">
                 <div class="lx-row lx-card">
                   <h1 class="title">
-                    <i class="fas fa-info-circle"></i>&nbsp;Welcome to Armaan's
+                    <i class="fas fa-info-circle"></i>&nbsp;Welcome to <%= user.fname %>'s
                     corner of the Internet
                   </h1>
                 </div>
@@ -82,9 +81,7 @@
                   </h1>
                   <div class="text">
                     <p>
-                      Hi, my name is&nbsp;<b>Armaan Dhanji</b>, but I'm better
-                      known by my nickname&nbsp;<i>@armaand</i>, and I'm a
-                      teacher in the School of Computing at BCIT.
+                      <%= user.aboutMe %>
                     </p>
                     <p>
                       I&nbsp;&nbsp;<i class="fas fa-heart"></i>&nbsp; to code
@@ -98,27 +95,10 @@
                     <i class="fas fa-terminal"></i>&nbsp;Technologies
                   </h1>
                   <div class="mini-cards">
-                    <span class="has-dflex-center bs-md" title="CSS"
-                      ><i class="fab fa-css3-alt"></i></span
-                    ><span class="has-dflex-center bs-md" title="HTML"
-                      ><i class="fab fa-html5"></i></span
-                    ><span class="has-dflex-center bs-md" title="JS"
-                      ><i class="fab fa-js"></i></span
-                    ><span class="has-dflex-center bs-md" title="Sass"
-                      ><i class="fab fa-sass"></i></span
-                    ><span class="has-dflex-center bs-md" title="Git"
-                      ><i class="fab fa-git-alt"></i></span
-                    ><span class="has-dflex-center bs-md" title="Gulp"
-                      ><i class="fab fa-gulp"></i></span
-                    ><span class="has-dflex-center bs-md" title="Node JS"
-                      ><i class="fab fa-node-js"></i></span
-                    ><span class="has-dflex-center bs-md" title="NPM"
-                      ><i class="fab fa-npm"></i></span
-                    ><span class="has-dflex-center bs-md" title="PHP"
-                      ><i class="fab fa-php"></i></span
-                    ><span class="has-dflex-center bs-md" title="React"
-                      ><i class="fab fa-react"></i
-                    ></span>
+                    <% user.skills.forEach(skill => {%>
+                      <span class="has-dflex-center bs-md" title="<%= skill %> "
+                      ><i class="<%= mapping[skill] %>"></i></span>
+                      <% }) %>
                   </div>
                 </div>
                 <div class="lx-row lx-card">
@@ -127,28 +107,11 @@
                   </h1>
                   <div class="text">
                     <ol>
-                      <li>
-                        <p>
-                          <b>The Lord of the Rings</b>&nbsp;- J. R. R. Tolkien
-                        </p>
-                      </li>
-                      <li>
-                        <p><b>Foundation series</b>&nbsp;- Isaac Asimov</p>
-                      </li>
-                      <li>
-                        <p>
-                          <b>Cracking the Coding Interview</b>&nbsp;- Gayle
-                          Laakmann
-                        </p>
-                      </li>
-                      <li>
-                        <p><b>Clean Code</b>&nbsp;- Rob Martin</p>
-                      </li>
-                      <li>
-                        <p>
-                          <b>A Brief History of Time</b>&nbsp;- Stephen Hawking
-                        </p>
-                      </li>
+                      <% user.favouriteBooks.split(",").forEach(book => { %>
+                        <li>
+                          <p><b><%= book.split("-")[0] %></b>&nbsp;- <%= book.split("-")[1] %></p>
+                        </li>
+                      <% }) %>
                     </ol>
                   </div>
                 </div>
